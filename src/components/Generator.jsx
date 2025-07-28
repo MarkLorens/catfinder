@@ -10,6 +10,7 @@ const Generator = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
+    const [selectedData, setSelectedData] = useState([]);
 
 
     useEffect(() => {
@@ -23,19 +24,35 @@ const Generator = () => {
         const d = doc.data();
         return {
             id: doc.id,
-            hara: d.Harga,
+            harga: d[" Harga "] ,
             kemasan: d.Kemasan,
             link: d["Link E-katalog"],
             nie: d.NIE,
             name: d["Nama Produk"],
-            no: d.no
+            no: d.No
         };
     });
         setExcelData(data);
     }
 
     const handleSelect = (data) => {
-        console.log(data);
+        setSelectedData(prev => {
+            if(prev.find(item => item.id === data.id)) return prev;
+            return [...prev, data];
+        });
+    };
+
+    const handleRemove = (id) => {
+        setSelectedData(prev => prev.filter(item => item.id !== id));
+    }
+
+    const generateExcel = () => {
+        if(selectedData.length < 1) {
+            alert("Please add data before generating.");
+            return;
+        }
+
+        alert("Nice");
     }
 
 
@@ -51,7 +68,7 @@ const Generator = () => {
     return (
         <div className={styles.container}>
             <div className={styles.search}>
-                <input type="text" placeholder='Enter Code' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+                <input type="text" placeholder='Enter Code' name='search-input' id='SearchInput' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
             </div>
             <div className={styles.tables}>
                 {filteredData.length > 0 ? (
@@ -81,6 +98,21 @@ const Generator = () => {
                 >
                     Next
                 </button>
+            </div>
+
+            <div className={styles.tables}>
+                <input type="button" name="submit-button" id="Submit Button" value="Selesai" className={styles.submit} onClick={() => generateExcel(selectedData)}/>
+                <h3>Selected Items:</h3>
+                {selectedData.length > 0 ? (
+                    selectedData.map(item => (
+                    <div key={item.id} className={styles.data}>
+                        {item.name || "unnamed" }
+                        <button className={styles.button} onClick={() => handleRemove(item.id)}>-</button>
+                    </div>
+                    ))
+                ) : (
+                    <p>No items selected.</p>
+                )}
             </div>
 
         </div>
