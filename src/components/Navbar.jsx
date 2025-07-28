@@ -1,9 +1,9 @@
-import '../styles/Navbar.css';
+import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
     return (
     <>
-        <div className="container">
+        <div className={styles.container}>
             <nav>
                 <ul>
                     <li>Logo</li>
