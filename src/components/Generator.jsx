@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import * as XLSX from 'xlsx';
 import styles from '../styles/Generator.module.css'
 import { db } from "../firebase";
 import { collection, getDocs } from 'firebase/firestore';
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 
 
 
@@ -46,19 +49,57 @@ const Generator = () => {
         setSelectedData(prev => prev.filter(item => item.id !== id));
     }
 
-    const generateExcel = () => {
-        if(selectedData.length < 1) {
+    const generateExcel = async () => {
+        if (selectedData.length < 1) {
             alert("Please add data before generating.");
             return;
         }
 
-        alert("Nice");
-    }
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('SelectedData');
 
+        // Define headers (custom order & styling)
+        const columns = [
+            { header: "Nama Produk", key: "name", width: 70 },
+            { header: "NIE", key: "nie", width: 20 },
+            { header: "Harga", key: "harga", width: 10 },
+            { header: "Kemasan", key: "kemasan", width: 10 },
+            { header: "Link", key: "link", width: 75 }
+        ];
+        worksheet.columns = columns;
+
+        // Add rows
+        selectedData.forEach(item => {
+            worksheet.addRow(item);
+        });
+
+        // Style headers
+        worksheet.getRow(1).eachCell(cell => {
+            cell.font = { bold: true };
+            cell.alignment = { vertical: 'middle', horizontal: 'center' };
+            cell.fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { argb: 'FFFFDC64' }
+            };
+            cell.border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+            };
+        });
+
+        // Export
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        saveAs(blob, 'styled-data.xlsx');
+    };
 
     const filteredData = excelData.filter((item) =>
         item.name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
     const paginatedData = filteredData.slice(
         (currentPage - 1) * itemsPerPage,
