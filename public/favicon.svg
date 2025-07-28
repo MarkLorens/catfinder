@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><style>
+    #light-icon {
+      display: inline;
+    }
+    #dark-icon {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #light-icon {
+        display: none;
+      }
+      #dark-icon {
+        display: inline;
+      }
+    }
+  </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1184)"><rect width="1000" height="1000" fill="#000000"></rect><g transform="matrix(0.5208333333333334,0,0,0.5208333333333334,-5.684341886080802e-14,218.75)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080"><svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1080" fill="#121212"></rect>
+<path d="M961.5 233.458H1092L1147.5 658L1092 908.458H701.692H643L821 233.458H961.5Z" fill="#ECECEC"></path>
+<path d="M1037.92 669.704L1036.97 669.824L976.138 913.157L966.437 910.731L956.735 908.307L1017.3 666.057L962.478 233.516L972.397 232.258L982.318 231L1037.92 669.704Z" fill="#121212"></path>
+<path d="M895.185 668.704L894.235 668.824L833.402 912.157L823.701 909.731L814 907.307L874.562 665.057L819.742 232.516L829.662 231.258L839.583 230L895.185 668.704Z" fill="#121212"></path>
+<line x1="1046.43" y1="638.585" x2="1027.43" y2="717.585" stroke="#ECECEC" stroke-width="5"></line>
+</svg></svg></g></g><defs><clipPath id="SvgjsClipPath1184"><rect width="1000" height="1000" x="0" y="0" rx="500" ry="500"></rect></clipPath></defs></svg></g><g id="dark-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g><g transform="matrix(0.5208333333333334,0,0,0.5208333333333334,-5.684341886080802e-14,218.75)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080"><svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="1080" fill="#121212"></rect>
+<path d="M961.5 233.458H1092L1147.5 658L1092 908.458H701.692H643L821 233.458H961.5Z" fill="#ECECEC"></path>
+<path d="M1037.92 669.704L1036.97 669.824L976.138 913.157L966.437 910.731L956.735 908.307L1017.3 666.057L962.478 233.516L972.397 232.258L982.318 231L1037.92 669.704Z" fill="#121212"></path>
+<path d="M895.185 668.704L894.235 668.824L833.402 912.157L823.701 909.731L814 907.307L874.562 665.057L819.742 232.516L829.662 231.258L839.583 230L895.185 668.704Z" fill="#121212"></path>
+<line x1="1046.43" y1="638.585" x2="1027.43" y2="717.585" stroke="#ECECEC" stroke-width="5"></line>
+</svg></svg></g></g></svg></g></svg>
