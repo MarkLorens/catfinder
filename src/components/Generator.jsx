@@ -7,6 +7,8 @@ import { collection, getDocs } from 'firebase/firestore';
 
 const Generator = () => {
     const [excelData, setExcelData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+
 
     useEffect(() => {
         fetchData();
@@ -34,16 +36,21 @@ const Generator = () => {
         console.log("hit");
 
     }
+
+    const filteredData = excelData.filter((item) =>
+        item.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className={styles.container}>
             <div className={styles.search}>
-                <input type="text" placeholder='Enter Code' />
+                <input type="text" placeholder='Enter Code' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
             </div>
             <div className={styles.tables}>
-                {excelData.length > 0 ? (
-                    excelData.map((data) => (
+                {filteredData.length > 0 ? (
+                    filteredData.map((data) => (
                         <div className={styles.data} key={data.id}>
-                            {data["Product's Name"] || data.name || "Unnamed"}
+                            {data.name || "Unnamed"}
                             <button className={styles.button} onClick={handleSelect}>+</button>
                         </div>
                     ))
